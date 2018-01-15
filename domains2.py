@@ -1,5 +1,6 @@
 import whois
 from datetime import datetime, timedelta
+from tld import get_tld
 import requests
 
 
@@ -24,7 +25,8 @@ def check_200(domains):
 
 def check_if_expiration_date_is_ok(dom):
     time_now = datetime.now()
-    details = whois.whois(dom)
+    print(get_tld(dom))
+    details = whois.whois(get_tld(dom))
     domain_expiration_date = details.expiration_date
     if domain_expiration_date - time_now >= timedelta(days=31):
         print('ok')
