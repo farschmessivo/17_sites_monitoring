@@ -3,6 +3,8 @@ import sys
 from datetime import datetime, timedelta
 import requests
 
+month = 31
+
 
 def load_urls4check(path):
     domains = []
@@ -17,25 +19,12 @@ def is_server_respond_with_200(domain):
     return response.ok
 
 
-def get_domain_expiration_date(domains):
-    for domain_name in domains:
-        details = whois.whois(domain_name)
-        domain_expiration_date = details.expiration_date
-        time_now = datetime.now()
-        if isinstance(domain_expiration_date, (list)):
-            domain_expiration_date = domain_expiration_date[0]
-        if domain_expiration_date - time_now >= timedelta(days=31):
-            print('ok')
-        else:
-            print('not ok')
-
-
 def is_expiration_in_month(date_time):
     if isinstance(date_time, list):
         time_left = min(date_time) - datetime.now()
     else:
         time_left = date_time - datetime.now()
-    return True if time_left.days < 31 else False
+    return True if time_left.days < month else False
 
 
 def get_domain_expiration_date(url):
