@@ -3,8 +3,6 @@ import sys
 from datetime import datetime, timedelta
 import requests
 
-month = 31
-
 
 def load_urls4check(path):
     domains = []
@@ -20,6 +18,7 @@ def is_server_respond_with_200(domain):
 
 
 def is_expiration_in_month(date_time):
+    month = 31
     if isinstance(date_time, list):
         time_left = min(date_time) - datetime.now()
     else:
