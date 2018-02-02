@@ -28,6 +28,7 @@ def get_domain_expiration_date(url):
 
 
 if __name__ == '__main__':
+    days_in_calendar_month = 31
     if len(sys.argv) == 1:
         sys.exit('Usage: python3 check_sites_health.py <path_to_txt>')
     filepath = sys.argv[1]
@@ -38,4 +39,4 @@ if __name__ == '__main__':
             is_server_respond_ok(website)))
         expiration_date = get_domain_expiration_date(website)
         print('\tExpiring in month: {}\n'.format(
-            is_expiration_in_month(expiration_date, 31)))
+            is_expiration_in_month(expiration_date, days_in_calendar_month)))
