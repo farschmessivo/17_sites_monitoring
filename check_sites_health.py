@@ -23,11 +23,12 @@ def is_expiration_in_month(date_time, number_of_days_in_month):
         time_left = min(date_time) - datetime.now()
     else:
         time_left = date_time - datetime.now()
-    return True if time_left.days < number_of_days_in_month else False
+    return time_left.days < number_of_days_in_month
 
 
 def get_domain_expiration_date(url):
     domain_info = whois.whois(url)
+    # print(domain_info)
     return domain_info.expiration_date
 
 
@@ -42,5 +43,8 @@ if __name__ == '__main__':
         print('\tServer respond with 200: {}'.format(
             is_server_respond_ok(url)))
         expiration_date = get_domain_expiration_date(url)
-        print('\tExpiring in month: {}\n'.format(
-            is_expiration_in_month(expiration_date, days_in_calendar_month)))
+        if expiration_date == None:
+            print('No expiry date for {}'.format(url))
+        else:
+            print('\tExpiring in month: {}\n'.format(
+                is_expiration_in_month(expiration_date, days_in_calendar_month)))
