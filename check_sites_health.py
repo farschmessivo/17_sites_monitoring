@@ -12,13 +12,12 @@ def load_urls_list(path):
 def is_server_respond_ok(domain):
     try:
         response = requests.get(domain)
+        return response.ok
     except requests.exceptions.RequestException:
         return False
-    else:
-        return response.ok
 
 
-def is_expiration_in_month(date_time, number_of_days_in_month):
+def is_expiry_date_close(date_time, number_of_days_in_month):
     if isinstance(date_time, list):
         time_left = min(date_time) - datetime.now()
     else:
@@ -28,7 +27,6 @@ def is_expiration_in_month(date_time, number_of_days_in_month):
 
 def get_domain_expiration_date(url):
     domain_info = whois.whois(url)
-    # print(domain_info)
     return domain_info.expiration_date
 
 
@@ -47,4 +45,4 @@ if __name__ == '__main__':
             print('No expiry date for {}'.format(url))
         else:
             print('\tExpiring in month: {}\n'.format(
-                is_expiration_in_month(expiration_date, days_in_calendar_month)))
+                is_expiry_date_close(expiration_date, days_in_calendar_month)))
