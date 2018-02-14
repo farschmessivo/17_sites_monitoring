@@ -1,7 +1,7 @@
 import whois
 import sys
-from datetime import datetime
 import requests
+from datetime import datetime
 
 
 def load_urls_list(path):
@@ -39,10 +39,15 @@ if __name__ == '__main__':
     for url in urls:
         print('Checking {}'.format(url))
         print('\tServer respond with 200: {}'.format(
-            is_server_respond_ok(url)))
+            is_server_respond_ok(url)
+        ))
         expiration_date = get_domain_expiration_date(url)
-        if expiration_date == None:
+        if expiration_date is None:
             print('No expiry date for {}'.format(url))
         else:
             print('\tExpiring in month: {}\n'.format(
-                is_expiry_date_close(expiration_date, days_in_calendar_month)))
+                is_expiry_date_close(
+                    expiration_date,
+                    days_in_calendar_month
+                    )
+                ))
