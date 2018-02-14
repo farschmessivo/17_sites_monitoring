@@ -46,8 +46,5 @@ if __name__ == '__main__':
             print('No expiry date for {}'.format(url))
         else:
             print('\tExpiring in month: {}\n'.format(
-                is_expiry_date_close(
-                    expiration_date,
-                    days_in_calendar_month
-                    )
-                ))
+                is_expiry_date_close(expiration_date, days_in_calendar_month)
+            ))
