@@ -23,7 +23,7 @@ https://google.com
 # How to run the script
 
 ```
-$ python3 check_sites_health.py sites.txt 
+$ python3 check_sites_health.py <txt_with_utls> 
 
 Checking http://github.com
 	Server respond with 200: True
