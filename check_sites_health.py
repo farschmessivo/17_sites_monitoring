@@ -18,19 +18,19 @@ def is_server_respond_ok(domain):
 
 
 def is_expiry_date_close(date_time, number_of_days_in_month):
-    return date_time.days < number_of_days_in_month
+    time_left = date_time - datetime.now()
+    return time_left.days < number_of_days_in_month
 
 
 def get_domain_expiration_date(url):
     domain_info = whois.whois(url)
-    date_time = domain_info.expiration_date
-    if date_time is None:
-        time_left = None
-    elif isinstance(date_time, list):
-        time_left = min(date_time) - datetime.now()
+    expiry_date_time = domain_info.expiration_date
+    if expiry_date_time is None:
+        return None
+    elif isinstance(expiry_date_time, list):
+        return min(expiry_date_time)
     else:
-        time_left = date_time - datetime.now()
-    return time_left
+        return expiry_date_time
 
 
 if __name__ == '__main__':
