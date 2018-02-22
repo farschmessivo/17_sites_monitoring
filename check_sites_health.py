@@ -33,7 +33,7 @@ def get_domain_expiration_date(url):
         return expiry_date_time
 
 
-def print_health_domain(urls):
+def print_domains_health(urls):
     for url in urls:
         print('Checking {}'.format(url))
         print('\tServer respond with 200: {}'.format(
@@ -54,4 +54,4 @@ if __name__ == '__main__':
         sys.exit('Usage: python3 check_sites_health.py <path_to_txt>')
     filepath = sys.argv[1]
     urls = load_urls_list(filepath)
-    print_health_domain(urls)
+    print_domains_health(urls)
