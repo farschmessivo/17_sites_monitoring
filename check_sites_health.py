@@ -33,12 +33,7 @@ def get_domain_expiration_date(url):
         return expiry_date_time
 
 
-if __name__ == '__main__':
-    days_in_calendar_month = 31
-    if len(sys.argv) == 1:
-        sys.exit('Usage: python3 check_sites_health.py <path_to_txt>')
-    filepath = sys.argv[1]
-    urls = load_urls_list(filepath)
+def print_health_domain(urls):
     for url in urls:
         print('Checking {}'.format(url))
         print('\tServer respond with 200: {}'.format(
@@ -51,3 +46,12 @@ if __name__ == '__main__':
             print('\tExpiring in a month: {}\n'.format(
                 is_expiry_date_close(expiration_date, days_in_calendar_month)
             ))
+
+
+if __name__ == '__main__':
+    days_in_calendar_month = 31
+    if len(sys.argv) == 1:
+        sys.exit('Usage: python3 check_sites_health.py <path_to_txt>')
+    filepath = sys.argv[1]
+    urls = load_urls_list(filepath)
+    print_health_domain(urls)
