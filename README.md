@@ -25,15 +25,15 @@ https://google.com
 ```
 $ python3 check_sites_health.py <txt_with_utls> 
 
-Checking http://github.com
-	Server respond with 200: True
-	Expiring in month: False
+	Checking http://www.github.com:
+	server respond with 200: True
+	Expiring in a month: False
 
-Checking http://romangagarin.com
+    Checking http://romangagarin.com
 	Server respond with 200: True
-	Expiring in month: True
+	No expiry date for http://romangagarin.com
 
-Checking http://theframeworks.com
+    Checking http://theframeworks.com
 	Server respond with 200: True
 	Expiring in month: False
 
