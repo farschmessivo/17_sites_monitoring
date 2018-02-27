@@ -33,19 +33,24 @@ def get_domain_expiration_date(url):
         return expiry_date_time
 
 
-def print_domains_health(urls):
-    for url in urls:
-        print('Checking {}'.format(url))
-        print('\tServer respond with 200: {}'.format(
-            is_server_respond_ok(url)
+def print_domain_url(url):
+    print('\tChecking {}:'.format(url))
+
+
+def print_domain_respond_200(url):
+    print('\tServer respond with 200: {}'.format(
+        is_server_respond_ok(url)
+    ))
+
+
+def print_domain_health(expiration_date, url):
+    if expiration_date is None:
+        print('\tNo expiry date for {}'.format(url))
+    else:
+        print('\tExpiring in a month: {}\n'.format(
+            is_expiry_date_close(expiration_date,
+                                 days_in_calendar_month)
         ))
-        expiration_date = get_domain_expiration_date(url)
-        if expiration_date is None:
-            print('No expiry date for {}'.format(url))
-        else:
-            print('\tExpiring in a month: {}\n'.format(
-                is_expiry_date_close(expiration_date, days_in_calendar_month)
-            ))
 
 
 if __name__ == '__main__':
@@ -54,4 +59,8 @@ if __name__ == '__main__':
         sys.exit('Usage: python3 check_sites_health.py <path_to_txt>')
     filepath = sys.argv[1]
     urls = load_urls_list(filepath)
-    print_domains_health(urls)
+    for url in urls:
+        expiration_date = get_domain_expiration_date(url)
+        print_domain_url(url)
+        print_domain_respond_200(url)
+        print_domain_health(expiration_date, url)
