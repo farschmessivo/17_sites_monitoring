@@ -17,8 +17,10 @@ def is_server_respond_ok(domain):
         return False
 
 
-def is_expiry_date_close(date_time,
-                         number_of_days_in_month):
+def is_expiry_date_close(
+        date_time,
+        number_of_days_in_month
+    ):
     time_left = date_time - datetime.now()
     return time_left.days < number_of_days_in_month
 
@@ -34,7 +36,11 @@ def get_domain_expiration_date(url):
         return expiry_date_time
 
 
-def print_domain_health(url, server_response, expiration_date):
+def print_domain_health(
+        url,
+        server_response,
+        expiration_date
+    ):
     print('\tChecking {}:'.format(url))
     print('\tServer respond with 200: {}'.format(
         server_response
@@ -59,8 +65,9 @@ if __name__ == '__main__':
     for url in urls:
         server_response = is_server_respond_ok(url)
         expiration_date = get_domain_expiration_date(url)
-        print_domain_health(url,
-                            server_response,
-                            expiration_date
-                            )
+        print_domain_health(
+            url,
+            server_response,
+            expiration_date
+        )
 
